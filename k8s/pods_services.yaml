@@ -38,3 +38,10 @@ spec:
 #     port: 80
 #     targetPort: 8090
 #   type: LoadBalancer
+
+#Testing
+ #Make changes to mylabfs/index.html
+ #Push code to Git
+ #Auto/Manual Build Using Jenkins
+ #Check 'kubectl get pods,svc -o wide'
+ #http://<mini_kube_ip_address>:31000/mylabfs
