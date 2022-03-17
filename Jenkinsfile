@@ -24,7 +24,7 @@ pipeline {
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
                 sshagent(['s01-devs']) {
-		        #sh "ssh devs@10.10.1.10 mkdir /home/devs/k8s"
+		        //sh "ssh devs@10.10.1.10 mkdir /home/devs/k8s"
                 sh "scp -Cr -o StrictHostKeyChecking=no k8s devs@10.10.1.10:/home/devs/"
                 }
             }
