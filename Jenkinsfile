@@ -6,7 +6,9 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                sh "docker build . -t mylabfs/gjd_pl_03:${DOCKER_TAG}"
+                sshagent(['s01-devs']) {
+                sh "ssh dev@10.10.1.10 docker build . -t mylabfs/gjd_pl_03:${DOCKER_TAG}"
+                }
             }
         }
         // stage('DockerHub Push') {
