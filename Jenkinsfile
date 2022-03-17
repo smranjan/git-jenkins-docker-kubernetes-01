@@ -7,18 +7,18 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sshagent(['s01-devs']) {
-                sh "ssh dev@10.10.1.10 docker build . -t mylabfs/gjd_pl_03:${DOCKER_TAG}"
+                sh "docker build . -t smranjan/gjdk_01:${DOCKER_TAG}"
                 }
             }
         }
-        // stage('DockerHub Push') {
-        //     steps {
-        //         withCredentials([string(credentialsId: 'docker-hub-mylabfs'), variable: 'dockerHubMylabfsPwd'])) {
-        //         sh "docker login -u mylabfs -p ${dockerHubMylabfsPwd}"
-        //         sh "docker push mylabfs/myapp:${DOCKER_TAG}"
-        //         } 
-        //     }
-        // }
+        stage('DockerHub Push') {
+            steps {
+                withCredentials([string(credentialsId: 'docker-hub-smranjan'), variable: 'dockerHubsmranjanPwd'])) {
+                sh "docker login -u smranjan -p ${dockerHubsmranjanPwd}"
+                sh "docker push smranjan/gjdk_01:${DOCKER_TAG}"
+                } 
+            }
+        }
         stage('Deploy to k8s') {
             steps {
                 sh "chmod +x changeTag.sh"
