@@ -31,7 +31,7 @@ pipeline {
 }
 
 def getDockerTag() {
-    #git url: 'https://github.com/smranjan/git-jenkins-docker.git', branch: 'master'
+    //git url: 'https://github.com/smranjan/git-jenkins-docker.git', branch: 'master'
     def tag = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
 }
