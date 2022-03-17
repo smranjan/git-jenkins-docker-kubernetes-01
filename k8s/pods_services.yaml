@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: nodeapp
-      image: mylabfs/nodeapp:tagVersion
+      image: smranjan/gjdk_01:2a6eb81eb032c48e1f9b6c7c9e1740b005a22b55
       ports:
         - containerPort: 8090
 
@@ -15,12 +15,26 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodeapp
+  name: svc-nodeapp
 spec:
+  type: NodePort
+  ports:
+    - port: 3050              #This is the port to use by other Pods to reach target port
+      targetPort: 80          #This is the port the destination Pods is listening on
+      nodePort: 31000         #Port to use from your Desktop/Laptop/ClusterNodes
   selector:
     app: nodeapp
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8090
-  type: LoadBalancer
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nodeapp
+# spec:
+#   selector:
+#     app: nodeapp
+#   ports:
+#   - protocol: TCP
+#     port: 80
+#     targetPort: 8090
+#   type: LoadBalancer
