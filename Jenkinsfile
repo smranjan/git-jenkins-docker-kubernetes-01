@@ -9,14 +9,14 @@ pipeline {
                 sh "docker build . -t mylabfs/gjd_pl_03:${DOCKER_TAG}"
             }
         }
-        stage('DockerHub Push') {
-            steps {
-                withCredentials([string(credentialsId: 'docker-hub-mylabfs'), variable: 'dockerHubMylabfsPwd'])) {
-                sh "docker login -u mylabfs -p ${dockerHubMylabfsPwd}"
-                sh "docker push mylabfs/myapp:${DOCKER_TAG}"
-                } 
-            }
-        }
+        // stage('DockerHub Push') {
+        //     steps {
+        //         withCredentials([string(credentialsId: 'docker-hub-mylabfs'), variable: 'dockerHubMylabfsPwd'])) {
+        //         sh "docker login -u mylabfs -p ${dockerHubMylabfsPwd}"
+        //         sh "docker push mylabfs/myapp:${DOCKER_TAG}"
+        //         } 
+        //     }
+        // }
         stage('Deploy to k8s') {
             steps {
                 sh "chmod +x changeTag.sh"
