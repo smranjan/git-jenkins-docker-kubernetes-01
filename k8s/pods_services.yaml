@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: nodeapp
-      image: smranjan/gjdk_01:2a6eb81eb032c48e1f9b6c7c9e1740b005a22b55
+      image: smranjan/gjdk_01:tagVersion
       ports:
         - containerPort: 8090
 
